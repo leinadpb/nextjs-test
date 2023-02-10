@@ -1,8 +1,15 @@
+import clsx from "clsx";
 import { FC } from "react";
 
-const Card: FC<any> = ({ children }) => {
+type CardProps = {
+  className?: string;
+  children: React.ReactNode;
+};
+const Card: FC<CardProps> = ({ children, className = "" }) => {
   return (
-    <div className="rounded bg-white shadow-sm p-4 min-w-middle">
+    <div
+      className={clsx("rounded bg-white shadow-sm p-4 min-w-middle", className)}
+    >
       {children}
     </div>
   );

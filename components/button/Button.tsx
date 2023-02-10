@@ -1,4 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
+import clsx from "clsx";
 import { FC } from "react";
 import { Loader } from "react-feather";
 
@@ -51,6 +52,7 @@ export interface ButtonProps
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  avoidLoading?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -58,22 +60,21 @@ const Button: FC<ButtonProps> = ({
   fullWidth = false,
   loading = false,
   disabled = false,
+  avoidLoading = false,
   ...other
 }) => {
-  const className = fullWidth ? "w-full" : "";
+  let className = clsx(
+    fullWidth ? "w-full" : "",
+    loading ? "animate-pulse" : ""
+  );
+
   return (
     <button
       className={buttonClasses({ className })}
-      disabled={disabled || loading}
+      disabled={disabled || (loading && !avoidLoading)}
       {...other}
     >
-      {loading ? (
-        <div className="w-full flex justify-center items-center">
-          <Loader className="animate-spin" />
-        </div>
-      ) : (
-        children
-      )}
+      {children}
     </button>
   );
 };

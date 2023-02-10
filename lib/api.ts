@@ -1,3 +1,4 @@
+import { App } from "@prisma/client";
 import { AuthPayload } from "./types";
 
 interface FetcherOptions {
@@ -35,6 +36,6 @@ export const signout = () => {
   return fetcher({ url: "/api/signout", method: "POST" });
 };
 
-export const getApps = () => {
+export const getApps = (): Promise<App[]> => {
   return fetcher({ url: "/api/apps", method: "GET" });
 };

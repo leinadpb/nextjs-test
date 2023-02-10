@@ -2,24 +2,34 @@
 
 import { signout } from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
-import { LogOut } from "react-feather";
+import { FC, useState } from "react";
+import { Loader, LogOut } from "react-feather";
 import Button from "../button/Button";
 
-const LogoutButton: FC = () => {
+type LogoutButtonProps = {
+  firstname: string;
+  lastname: string;
+};
+const LogoutButton: FC<LogoutButtonProps> = ({ firstname, lastname }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogout = async () => {
-    await signout();
-    setTimeout(() => {
-      router.replace("/auth");
-    }, 100);
+    setLoading(true);
+    try {
+      await signout();
+      setTimeout(() => {
+        router.replace("/auth");
+      }, 100);
+    } catch (e: any) {
+      console.error(e);
+    }
   };
 
   return (
-    <Button intent={"text"} onClick={handleLogout}>
+    <Button intent={"text"} onClick={handleLogout} loading={loading}>
       <div className="p-2 flex flex-nowrap">
-        <span className="mr-4">Daniel Pena</span>
+        <span className="mr-4">{`${firstname} ${lastname}`}</span>
         <LogOut />
       </div>
     </Button>

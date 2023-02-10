@@ -1,10 +1,16 @@
+import { AppDto } from "@/lib/types";
 import { FC } from "react";
-import AppItemsSkeleton from "./AppItemSkeleton";
+import AppListItem from "./AppListItem";
 
-const AppList: FC = () => {
+type AppListProps = {
+  items: AppDto[];
+};
+const AppList: FC<AppListProps> = ({ items }) => {
   return (
     <div className="flex flex-wrap">
-      <AppItemsSkeleton />
+      {items.map((item: AppDto) => (
+        <AppListItem key={item.id} name={item.name} />
+      ))}
     </div>
   );
 };

@@ -25,4 +25,26 @@ model App {
   name    String @unique
   mainUrl String
   apiKey  String
+  lastRefresh DateTime?
+}
+
+enum KpiType {
+  TEXT
+  DATE
+  NUMBER
+  MB
+  GB
+  CURRENCY
+}
+model Kpi {
+  id Int @id @default(autoincrement())
+  name String
+  value String
+  appName String
+  desc String
+  type KpiType
+
+  @@unique([name, appName])
+  @@index([appName])
+  @@index([type])
 }
