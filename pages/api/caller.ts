@@ -64,7 +64,7 @@ export default async function handler(
     }
 
     const resp = await fetch(url, {
-      method: "GET",
+      method: "POST",
       headers: { "Api-Key": apiKey },
     });
     if (!resp.ok) {
