@@ -72,6 +72,7 @@ export default async function handler(
         msg: "App is not working, please review.",
         url,
         method: "GET",
+        error: JSON.stringify(resp.body),
       });
       return;
     }
