@@ -71,7 +71,7 @@ export default async function handler(
       res.status(500).json({
         msg: "App is not working, please review.",
         url,
-        method: "GET",
+        method: "POST",
         error: JSON.stringify(resp.body),
       });
       return;
