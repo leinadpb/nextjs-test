@@ -15,7 +15,7 @@ const AuthForm: React.FC = () => {
   const handlesubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e.target);
-    // Get Data and submit
+    // Get Data and submit!
     // @ts-ignore
     const formState = new FormData(e.target);
 
