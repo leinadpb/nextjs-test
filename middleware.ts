@@ -29,6 +29,7 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
   }
 
   const cookieName = process.env.COOKIE_NAME;
+  console.log("Middleware: cookieName", cookieName);
 
   if (!cookieName) {
     req.nextUrl.pathname = "/auth";
