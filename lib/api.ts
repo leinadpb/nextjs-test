@@ -1,4 +1,4 @@
-import { App } from "@prisma/client";
+import { App, Kpi } from "@prisma/client";
 import { AuthPayload } from "./types";
 
 interface FetcherOptions {
@@ -19,10 +19,11 @@ const fetcher = async ({ url, method, body, json = true }: FetcherOptions) => {
   });
 
   console.log("res", res);
-  if (!res.ok) {
+  if (!res?.ok) {
     throw new Error("API error");
   }
-  if (json) {
+
+  if (json && res) {
     const data = await res.json();
     return data.data;
   }
@@ -38,4 +39,12 @@ export const signout = () => {
 
 export const getApps = (): Promise<App[]> => {
   return fetcher({ url: "/api/apps", method: "GET" });
+};
+
+export const getKpis = (appName: string): Promise<Kpi[]> => {
+  return fetcher({ url: `/api/kpis?appName=${appName}`, method: "GET" });
+};
+
+export const refetch = (appName: string): Promise<Kpi[]> => {
+  return fetcher({ url: `/api/caller?appName=${appName}`, method: "GET" });
 };

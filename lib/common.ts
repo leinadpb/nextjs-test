@@ -9,13 +9,18 @@ const formatter = new Intl.NumberFormat("en-US", {
   //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
-const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+export const formatDate = (date: string | Date, short: boolean = false) => {
+  return new Date(date ?? "").toLocaleDateString(
+    "en-US",
+    !short
+      ? {
+          weekday: "long",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }
+      : { year: "numeric", month: "numeric", day: "numeric" }
+  );
 };
 
 export const parseValueBaseOnType = (value: string, type: KpiType): string => {

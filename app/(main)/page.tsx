@@ -1,12 +1,9 @@
-import AppItemsSkeleton from "@/components/app-list/AppItemSkeleton";
 import AppList from "@/components/app-list/AppList";
 import Heading from "@/components/heading/Heading";
-import { getApps } from "@/lib/api";
 import { delay } from "@/lib/async";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { cookies } from "next/headers";
-import { Suspense } from "react";
 
 const getAppListItems = async () => {
   await delay(2);
@@ -33,7 +30,13 @@ const DashboardPage = async () => {
   }
 
   return (
-    <AppList items={apps.map((app) => ({ id: app.id, name: app.name }))} />
+    <AppList
+      items={apps.map((app) => ({
+        id: app.id,
+        name: app.name,
+        lastRefresh: app.lastRefresh,
+      }))}
+    />
   );
 };
 

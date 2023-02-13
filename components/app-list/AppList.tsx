@@ -9,7 +9,11 @@ const AppList: FC<AppListProps> = ({ items }) => {
   return (
     <div className="flex flex-wrap">
       {items.map((item: AppDto) => (
-        <AppListItem key={item.id} name={item.name} />
+        <AppListItem
+          key={item.id}
+          name={item.name}
+          lastRefresh={item.lastRefresh?.toString()}
+        />
       ))}
     </div>
   );
