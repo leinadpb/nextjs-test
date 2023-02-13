@@ -45,7 +45,7 @@ const AppDetailHeader: FC<AppDetailHeaderProps> = ({
         </div>
       </div>
       <div className="p-2">
-        <span className="italic text-sm">GET - {mainUrl}</span>
+        <span className="italic text-sm">POST - {mainUrl}</span>
       </div>
       {error && (
         <div className="p-2 border-t-2 border-t-red-500">

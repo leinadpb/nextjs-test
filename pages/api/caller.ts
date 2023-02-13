@@ -23,7 +23,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "GET") {
+  if (req.method === "POST") {
     // @todo validate JWT token
     // @todo Get App Url and apiKey (get appName from params)
     // @todo Call App Url with ApiKey

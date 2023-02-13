@@ -46,5 +46,5 @@ export const getKpis = (appName: string): Promise<Kpi[]> => {
 };
 
 export const refetch = (appName: string): Promise<Kpi[]> => {
-  return fetcher({ url: `/api/caller?appName=${appName}`, method: "GET" });
+  return fetcher({ url: `/api/caller?appName=${appName}`, method: "POST" });
 };
